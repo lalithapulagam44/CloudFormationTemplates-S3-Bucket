@@ -1,0 +1,27 @@
+# CloudFormation Templates for crerating the basic S3 buckets
+
+AWSTemplateFormatVersion: 2010-09-09
+Description: CloudFormation template for s3 bucket
+Resources:
+  S3BucketCreation:
+    Type: 'AWS::S3::Bucket'
+    Properties: 
+      BucketName: s3lalithatest
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        BlockPublicPolicy: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      ObjectLockEnabled: false
+      Tags:
+        - Key: Name
+          Value: MyBucketNameTag
+        - Key: Environment
+          Value: Testing
